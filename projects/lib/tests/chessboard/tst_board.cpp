@@ -803,6 +803,17 @@ void tst_Board::results_data() const
 		<< "r1b4r/ppp2pp1/3n1b2/1RB1nK1n/2k1K3/5B2/PPPP1PPP/RNB5 w - - 0 1"
 		<< "0-1";
 
+	variant = "alice";
+
+	QTest::newRow("alice black win1")
+		<< variant
+		<< "16/p15/9ppp1k2/P5p8p/1n1P1rP5K3/10n5/16/6b9 w - - 1 37"
+		<< "0-1";
+	QTest::newRow("alice black win2")
+		<< variant
+		<< "4k11/pp2p2p8/10p1b1pb/16/10p5/10P2P2/P11r3/1K1r12 w - - 0 43"
+		<< "0-1";
+
 	variant = "twokings";
 
 	QTest::newRow("twokings black win1")
@@ -1031,13 +1042,14 @@ void tst_Board::perft_data() const
 	QTest::addColumn<quint64>("nodecount");
 
 	QString variant = "standard";
-
+/*
 	QTest::newRow("startpos")
 		<< variant
 		<< "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 		<< 5
 		<< Q_UINT64_C(4865609);
-	QTest::newRow("pos2")
+
+		QTest::newRow("pos2")
 		<< variant
 		<< "r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq -"
 		<< 4
@@ -1385,7 +1397,14 @@ void tst_Board::perft_data() const
 		<< "8/k1KP4/8/8/8/8/8/6n1 b - - 0 1"
 		<< 7 // 7 plies: 2891980
 		<< Q_UINT64_C(2891980);
-
+*/
+	variant = "alice";
+	QTest::newRow("alice startpos")
+		<< variant
+		<< "rnbqkbnr8/pppppppp8/16/16/16/16/PPPPPPPP8/RNBQKBNR8 w KQkq - 0 1"
+		<< 5 // 4 plies: 218580, 5 plies: 5871127, 6 plies: 156002192
+		<< Q_UINT64_C(5871127);
+/*
 	variant = "codrus";
 
 	QTest::newRow("codrus startpos")
@@ -1546,7 +1565,7 @@ void tst_Board::perft_data() const
 		//asymmetrical variant 4 plies: 192312, 5 plies: 4629168, 6 plies: 110762251
 		// symmetrical variant 4 plies: 192332, 5 plies: 4629764, 6 plies: 110829475
 		<< 5
-		<< Q_UINT64_C(4629764);
+		<< Q_UINT64_C(4629764);*/
 
 	variant = "grand";
 	QTest::newRow("grand startpos")
