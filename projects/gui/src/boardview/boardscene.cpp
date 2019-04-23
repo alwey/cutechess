@@ -35,6 +35,7 @@
 namespace {
 
 const qreal s_squareSize = 50;
+const QString defaultPieceSet(":/pieces/svg/default.svg");
 
 } // anonymous namespace
 
@@ -46,7 +47,7 @@ BoardScene::BoardScene(QObject* parent)
 	  m_reserve(nullptr),
 	  m_chooser(nullptr),
 	  m_anim(nullptr),
-	  m_renderer(new QSvgRenderer(QString(":/default.svg"), this)),
+	  m_renderer(new QSvgRenderer(defaultPieceSet, (QObject *)this)),
 	  m_highlightPiece(nullptr),
 	  m_moveArrows(nullptr)
 {
@@ -78,6 +79,13 @@ void BoardScene::setBoard(Chess::Board* board)
 	m_highlightPiece = nullptr;
 	m_moveArrows = nullptr;
 	m_board = board;
+
+	QString pieceSet = QSettings().value("ui/piece_set", defaultPieceSet)
+				.toString().trimmed();
+	if (pieceSet.isEmpty())
+		pieceSet = defaultPieceSet;
+
+	selectPieceSet(pieceSet);
 }
 
 void BoardScene::populate()
@@ -217,6 +225,20 @@ void BoardScene::flip()
 	}
 
 	group->start(QAbstractAnimation::DeleteWhenStopped);
+}
+
+void BoardScene::selectPieceSet(const QString& name)
+{
+	QSvgRenderer* renderer = new QSvgRenderer(name, (QObject *)this);
+
+	if (renderer->isValid())
+	{
+		delete m_renderer;
+		m_renderer = renderer;
+		populate();
+	}
+	else if (renderer != 0)
+		delete renderer;
 }
 
 void BoardScene::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
