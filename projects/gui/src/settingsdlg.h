@@ -49,6 +49,7 @@ class SettingsDialog : public QDialog
 		void browseTournamentDefaultEpdOutFile();
 
 	private:
+		void readPieceSetEntries();
 		void readSettings();
 
 		Ui::SettingsDialog* ui;

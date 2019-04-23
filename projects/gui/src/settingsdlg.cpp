@@ -21,8 +21,10 @@
 #include <QShowEvent>
 #include <QSettings>
 #include <QFileDialog>
+#include <QComboBox>
 #include <gamemanager.h>
 #include "cutechessapp.h"
+#include <QDirIterator>
 
 SettingsDialog::SettingsDialog(QWidget* parent)
 	: QDialog(parent),
@@ -61,7 +63,6 @@ SettingsDialog::SettingsDialog(QWidget* parent)
 	{
 		QSettings().setValue("ui/auto_flip_board_for_human_games", checked);
 	});
-
 	connect(ui->m_humanCanPlayAfterTimeoutCheck, &QCheckBox::toggled,
 		[=](bool checked)
 	{
@@ -105,6 +106,12 @@ SettingsDialog::SettingsDialog(QWidget* parent)
 		[=](const QString& tourEpdFile)
 	{
 		QSettings().setValue("tournament/default_epd_output_file", tourEpdFile);
+	});
+
+	connect(ui->m_pieceSetCombo, &QComboBox::currentTextChanged,
+		[=](const QString&)
+	{
+		QSettings().setValue("ui/piece_set", ui->m_pieceSetCombo->currentData());
 	});
 
 	connect(ui->m_browseTbPathBtn, &QPushButton::clicked,
@@ -197,6 +204,24 @@ void SettingsDialog::browseTournamentDefaultEpdOutFile()
 	dlg->open();
 }
 
+void SettingsDialog::readPieceSetEntries()
+{
+	const QString prefix(":/pieces/");
+	QDirIterator it(prefix, QDirIterator::Subdirectories);
+	while (it.hasNext()) {
+		QString s = it.next();
+		QString text = it.fileName().remove(".svg");
+		if (!it.fileInfo().isDir())
+			ui->m_pieceSetCombo->addItem(text, s);
+	}
+
+	int index = ui->m_pieceSetCombo->findData(QSettings().value("piece_set"));
+	if (index > -1)
+		ui->m_pieceSetCombo->setCurrentIndex(index);
+	else
+		ui->m_pieceSetCombo->setCurrentText("default");
+}
+
 void SettingsDialog::readSettings()
 {
 	QSettings s;
@@ -213,6 +238,7 @@ void SettingsDialog::readSettings()
 	ui->m_autoFlipBoardForHumanGamesCheck->setChecked(
 		s.value("auto_flip_board_for_human_games", false).toBool());
 	ui->m_tbPathEdit->setText(s.value("tb_path").toString());
+	readPieceSetEntries();
 	s.endGroup();
 
 	s.beginGroup("pgn");

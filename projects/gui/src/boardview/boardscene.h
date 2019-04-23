@@ -94,6 +94,8 @@ class BoardScene : public QGraphicsScene
 		void undoMove();
 		/*! Flips the board, with animation. */
 		void flip();
+		/*! Selects new piece set for rendering */
+		void selectPieceSet(const QString & name);
 		/*!
 		 * Cancels any ongoing user move and flashes \a result
 		 * over the board.

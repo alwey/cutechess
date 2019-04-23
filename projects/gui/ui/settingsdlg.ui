@@ -23,7 +23,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="m_generalTab">
       <attribute name="title">
@@ -186,6 +186,37 @@
         </spacer>
        </item>
       </layout>
+     </widget>
+     <widget class="QWidget" name="m_board_tab">
+      <attribute name="title">
+       <string>Board</string>
+      </attribute>
+      <widget class="QLabel" name="m_pieceSetLabel">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>162</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>&amp;Piece Set:</string>
+       </property>
+       <property name="buddy">
+        <cstring>m_tbPathEdit</cstring>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="m_pieceSetCombo">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>10</y>
+         <width>281</width>
+         <height>25</height>
+        </rect>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="m_enginesTab">
       <attribute name="title">
