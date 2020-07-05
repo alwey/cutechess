@@ -18,6 +18,7 @@ Options:
 			'andernach': Andernach Chess
 			'antiandernach': Anti-Andernach Chess
 			'antichess': Antichess (Losing Chess)
+			'armageddon': Chess, drawn games count as black wins
 			'asean': ASEAN-Chess
 			'atomic': Atomic Chess
 			'berolina': Berolina Chess
@@ -66,6 +67,7 @@ Options:
 			'placement': Placement Chess
 			'pocketknight': Pocket Knight Chess
 			'racingkings': Racing Kings Chess
+			'reversearmageddon': Chess, drawn games are white wins
 			'rifle': Rifle Chess
 			'seirawan': S-Chess (Seirawan Chess)
 			'shatranj': Shatranj

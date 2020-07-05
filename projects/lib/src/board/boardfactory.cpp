@@ -22,6 +22,7 @@
 #include "amazonboard.h"
 #include "andernachboard.h"
 #include "antiboard.h"
+#include "armageddonboard.h"
 #include "aseanboard.h"
 #include "atomicboard.h"
 #include "berolinaboard.h"
@@ -84,6 +85,7 @@ REGISTER_BOARD(AmazonBoard, "amazon")
 REGISTER_BOARD(AndernachBoard, "andernach")
 REGISTER_BOARD(AntiAndernachBoard, "antiandernach")
 REGISTER_BOARD(AntiBoard, "antichess")
+REGISTER_BOARD(ArmageddonBoard, "armageddon")
 REGISTER_BOARD(AseanBoard, "asean")
 REGISTER_BOARD(AtomicBoard, "atomic")
 REGISTER_BOARD(BerolinaBoard, "berolina")
@@ -132,6 +134,7 @@ REGISTER_BOARD(NewZealandBoard, "newzealand")
 REGISTER_BOARD(PlacementBoard, "placement")
 REGISTER_BOARD(PocketKnightBoard, "pocketknight")
 REGISTER_BOARD(RacingKingsBoard, "racingkings")
+REGISTER_BOARD(ReverseArmageddonBoard, "reversearmageddon")
 REGISTER_BOARD(RifleBoard, "rifle")
 REGISTER_BOARD(SeirawanBoard, "seirawan")
 REGISTER_BOARD(ShatranjBoard, "shatranj")

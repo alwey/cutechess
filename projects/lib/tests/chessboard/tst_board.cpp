@@ -762,6 +762,20 @@ void tst_Board::results_data() const
 		<< "K5kr/5Q2/8/8/8/8/8/8 b - - 0 1"
 		<< "1-0";
 
+	variant = "armageddon";
+
+	QTest::newRow("armageddon black win")
+		<< variant
+		<< "8/8/7K/5k2/8/8/8/8 w - - 0 65"
+		<< "0-1";
+
+	variant = "reversearmageddon";
+
+	QTest::newRow("reverse armageddon white win")
+		<< variant
+		<< "8/8/7K/5k2/8/8/8/8 w - - 0 65"
+		<< "1-0";
+
 	variant = "coregal";
 
 	QTest::newRow("coregal white win #1")

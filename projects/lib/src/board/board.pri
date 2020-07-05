@@ -60,6 +60,7 @@ SOURCES += $$PWD/board.cpp \
     $$PWD/losalamosboard.cpp \
     $$PWD/almostboard.cpp \
     $$PWD/amazonboard.cpp \
+    $$PWD/armageddonboard.cpp \
     $$PWD/chigorinboard.cpp \
     $$PWD/hoppelpoppelboard.cpp \
     $$PWD/placementboard.cpp \
@@ -130,6 +131,7 @@ HEADERS += $$PWD/board.h \
     $$PWD/losalamosboard.h \
     $$PWD/almostboard.h \
     $$PWD/amazonboard.h \
+    $$PWD/armageddonboard.h \
     $$PWD/chigorinboard.h \
     $$PWD/hoppelpoppelboard.h \
     $$PWD/placementboard.h \
