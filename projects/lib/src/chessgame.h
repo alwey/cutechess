@@ -71,6 +71,13 @@ class LIB_EXPORT ChessGame : public QObject
 		void setAdjudicator(const GameAdjudicator& adjudicator);
 		void setStartDelay(int time);
 		void setBookOwnership(bool enabled);
+		enum ArmageddonMode
+		{
+			ArmageddonModeOff,
+			ArmageddonModeBlackWin,
+			ArmageddonModeWhiteWin
+		};
+		void setArmageddonMode(ArmageddonMode mode);
 
 		void generateOpening();
 
@@ -143,6 +150,7 @@ class LIB_EXPORT ChessGame : public QObject
 		QSemaphore m_pauseSem;
 		QSemaphore m_resumeSem;
 		GameAdjudicator m_adjudicator;
+		struct { ArmageddonMode armageddonMode; } m_gameMode;
 };
 
 #endif // CHESSGAME_H

@@ -64,7 +64,8 @@ ChessGame::ChessGame(Chess::Board* board, PgnGame* pgn, QObject* parent)
 	  m_pgnInitialized(false),
 	  m_bookOwnership(false),
 	  m_boardShouldBeFlipped(false),
-	  m_pgn(pgn)
+	  m_pgn(pgn),
+	  m_gameMode({ArmageddonModeOff})
 {
 	Q_ASSERT(pgn != nullptr);
 
@@ -268,6 +269,18 @@ void ChessGame::onMoveMade(const Chess::Move& move)
 	// Get the result before sending the move to the opponent
 	m_board->makeMove(move);
 	m_result = m_board->result();
+	if (m_result.isDraw() && m_gameMode.armageddonMode != ArmageddonModeOff)
+	{
+		Chess::Side winner;
+		if (m_gameMode.armageddonMode == ArmageddonModeBlackWin)
+			winner = Chess::Side::Black;
+		else
+			winner = Chess::Side::White;
+		QString str = tr("Armageddon draw odds: %1 wins")
+				.arg(winner.toString());
+		str.append(" (" + m_result.description() + ")");
+		m_result = Chess::Result(Chess::Result::Win, winner, str);
+	}
 	if (m_result.isNone())
 	{
 		if (m_board->reversibleMoveCount() == 0)
@@ -484,6 +497,11 @@ void ChessGame::setOpeningBook(const OpeningBook* book,
 void ChessGame::setAdjudicator(const GameAdjudicator& adjudicator)
 {
 	m_adjudicator = adjudicator;
+}
+
+void ChessGame::setArmageddonMode(ChessGame::ArmageddonMode mode)
+{
+	m_gameMode.armageddonMode = mode;
 }
 
 void ChessGame::generateOpening()
