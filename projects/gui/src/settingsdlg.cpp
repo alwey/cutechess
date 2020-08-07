@@ -39,6 +39,12 @@ SettingsDialog::SettingsDialog(QWidget* parent)
 		QSettings().setValue("ui/highlight_legal_moves", checked);
 	});
 
+	connect(ui->m_showMoveArrowsCheck, &QCheckBox::toggled,
+		this, [=](bool checked)
+	{
+		QSettings().setValue("ui/show_move_arrows", checked);
+	});
+
 	connect(ui->m_closeUnusedInitialTabCheck, &QCheckBox::toggled,
 		this, [=](bool checked)
 	{
@@ -70,6 +76,11 @@ SettingsDialog::SettingsDialog(QWidget* parent)
 				      checked);
 	});
 
+	connect(ui->m_moveAnimationSpin, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),
+		this, [=](int value)
+	{
+		QSettings().setValue("ui/move_animation_duration", value);
+	});
 
 	connect(ui->m_concurrencySpin, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),
 		this, [=](int value)
@@ -205,6 +216,8 @@ void SettingsDialog::readSettings()
 	s.beginGroup("ui");
 	ui->m_highlightLegalMovesCheck->setChecked(
 		s.value("highlight_legal_moves", true).toBool());
+	ui->m_showMoveArrowsCheck->setChecked(
+		s.value("show_move_arrows", true).toBool());
 	ui->m_closeUnusedInitialTabCheck->setChecked(
 		s.value("close_unused_initial_tab", true).toBool());
 	ui->m_useFullUserNameCheck->setChecked(
@@ -214,6 +227,8 @@ void SettingsDialog::readSettings()
 	ui->m_autoFlipBoardForHumanGamesCheck->setChecked(
 		s.value("auto_flip_board_for_human_games", false).toBool());
 	ui->m_tbPathEdit->setText(s.value("tb_path").toString());
+	ui->m_moveAnimationSpin->setValue(
+		s.value("move_animation_duration", 300).toInt());
 	s.endGroup();
 
 	s.beginGroup("pgn");
