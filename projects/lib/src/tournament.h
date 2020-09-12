@@ -74,7 +74,7 @@ class LIB_EXPORT Tournament : public QObject
 			//! Loss by invalid result claim
 			InvalidResultClaim
 		};
-		constexpr static auto c_defaultFormat 
+		constexpr static auto c_defaultFormat
 			= "Rank,Name,Elo,Error,Games,Score,DScore";
 
 		/*!
@@ -480,7 +480,8 @@ class LIB_EXPORT Tournament : public QObject
 		 */
 		virtual void onFinished();
 		/*!
-		 * Adds \a score points to player at index \a player.
+		 * Adds \a score points to player at index \a player for
+		 * playing side \a side.
 		 *
 		 * This member function is called when a game ends with a
 		 * 1-0, 0-1 or 1/2-1/2 result. Subclasses can reimplement this
