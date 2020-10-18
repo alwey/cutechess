@@ -67,6 +67,7 @@ SOURCES += $$PWD/board.cpp \
     $$PWD/gustavboard.cpp \
     $$PWD/clobberboard.cpp \
     $$PWD/connectboard.cpp \
+    $$PWD/linesofactionboard.cpp \
     $$PWD/boardfactory.cpp \
     $$PWD/boardtransition.cpp \
     $$PWD/syzygytablebase.cpp
@@ -140,6 +141,7 @@ HEADERS += $$PWD/board.h \
     $$PWD/gustavboard.h \
     $$PWD/clobberboard.h \
     $$PWD/connectboard.h \
+    $$PWD/linesofactionboard.h \
     $$PWD/boardfactory.h \
     $$PWD/boardtransition.h \
     $$PWD/syzygytablebase.h
